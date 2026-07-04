@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CarePlus Hospital Management System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-hospital"></i>
+
+<h2>CarePlus</h2>
+
+</div>
+
+<ul>
+
+<li class="active">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>Dashboard</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-user-injured"></i>
+
+<span>Patients</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-user-doctor"></i>
+
+<span>Doctors</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>Appointments</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-file-invoice-dollar"></i>
+
+<span>Billing</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-bed"></i>
+
+<span>Beds</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-pills"></i>
+
+<span>Pharmacy</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<div>
+
+<h1>Hospital Dashboard</h1>
+
+<p>Welcome Admin</p>
+
+</div>
+
+<div class="right">
+
+<input
+
+type="text"
+
+placeholder="Search">
+
+<img
+
+src="https://i.pravatar.cc/100"
+
+class="profile">
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card blue">
+
+<div>
+
+<h4>Total Patients</h4>
+
+<h2 id="count">0</h2>
+
+</div>
+
+<i class="fa-solid fa-user-injured"></i>
+
+</div>
+
+<div class="card green">
+
+<div>
+
+<h4>Doctors</h4>
+
+<h2 id="doctorCount">0</h2>
+
+</div>
+
+<i class="fa-solid fa-user-doctor"></i>
+
+</div>
+
+<div class="card orange">
+
+<div>
+
+<h4>Appointments</h4>
+
+<h2 id="appointmentCount">0</h2>
+
+</div>
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+<div class="card red">
+
+<div>
+
+<h4>Available Beds</h4>
+
+<h2 id="beds">120</h2>
+
+</div>
+
+<i class="fa-solid fa-bed"></i>
+
+</div>
+
+</section>
+
+<section class="patient-form">
+
+<h2>
+
+Add Patient
+
+</h2>
+
+<div class="grid">
+
+<input
+
+type="text"
+
+id="name"
+
+placeholder="Patient Name">
+
+<input
+
+type="number"
+
+id="age"
+
+placeholder="Age">
+
+<input
+
+type="text"
+
+id="disease"
+
+placeholder="Disease">
+
+<select id="gender">
+
+<option>Male</option>
+
+<option>Female</option>
+
+<option>Other</option>
+
+</select>
+
+<select id="status">
+
+<option>Admitted</option>
+
+<option>Discharged</option>
+
+<option>Under Observation</option>
+
+</select>
+
+<input
+
+type="date"
+
+id="date">
+
+</div>
+
+<button onclick="addPatient()">
+
+Add Patient
+
+</button>
+
+</section>
+
+<section class="patients">
+
+<div class="top">
+
+<h2>
+
+Patient Records
+
+</h2>
+
+<input
+
+type="text"
+
+id="search"
+
+placeholder="Search Patient"
+
+onkeyup="searchPatient()">
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Age</th>
+
+<th>Gender</th>
+
+<th>Disease</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="patientTable">
+
+</tbody>
+
+</table>
+
+</section>
+<section class="patients">
+
+<div class="top">
+
+<h2>
+
+Doctor Management
+
+</h2>
+
+</div>
+
+<div class="grid">
+
+<input
+type="text"
+id="doctorName"
+placeholder="Doctor Name">
+
+<input
+type="text"
+id="specialization"
+placeholder="Specialization">
+
+</div>
+
+<button onclick="addDoctor()">
+
+Add Doctor
+
+</button>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Doctor Name</th>
+
+<th>Specialization</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="doctorTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="patients">
+
+<div class="top">
+
+<h2>
+
+Appointment Booking
+
+</h2>
+
+</div>
+
+<div class="grid">
+
+<input
+type="text"
+id="patientAppointment"
+placeholder="Patient Name">
+
+<select id="doctorAppointment">
+
+<option value="">Select Doctor</option>
+
+</select>
+
+<input
+type="date"
+id="appointmentDate">
+
+<input
+type="time"
+id="appointmentTime">
+
+</div>
+
+<button onclick="addAppointment()">
+
+Book Appointment
+
+</button>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Patient</th>
+
+<th>Doctor</th>
+
+<th>Date</th>
+
+<th>Time</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="appointmentTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="patients">
+
+<div class="top">
+
+<h2>
+
+Billing Calculator
+
+</h2>
+
+</div>
+
+<div class="grid">
+
+<input
+type="number"
+id="consultationFee"
+placeholder="Consultation Fee">
+
+<input
+type="number"
+id="roomCharge"
+placeholder="Room Charge">
+
+<input
+type="number"
+id="medicineCharge"
+placeholder="Medicine Charge">
+
+<input
+type="number"
+id="otherCharge"
+placeholder="Other Charges">
+
+</div>
+
+<button onclick="calculateBill()">
+
+Calculate Bill
+
+</button>
+
+<div class="bill-card">
+
+<h2>Total Bill</h2>
+
+<h1 id="totalBill">
+
+₹0
+
+</h1>
+
+</div>
+
+</section>
+
+<section class="analytics">
+
+<h2>
+
+Hospital Analytics
+
+</h2>
+
+<div class="analytics-grid">
+
+<div class="analytics-card">
+
+<h3>Emergency Cases</h3>
+
+<h1>18</h1>
+
+<p>Today's Cases</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h3>Bed Occupancy</h3>
+
+<h1 id="occupancy">
+
+0%
+
+</h1>
+
+<p>Current Occupancy</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h3>Medicine Stock</h3>
+
+<h1>95%</h1>
+
+<p>Available</p>
+
+</div>
+
+<div class="analytics-card">
+
+<h3>Revenue</h3>
+
+<h1>
+
+₹2,45,000
+
+</h1>
+
+<p>This Month</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="charts">
+
+<h2>
+
+Analytics Charts
+
+</h2>
+
+<div class="chart-grid">
+
+<div class="chart-card">
+
+<h3>Patient Status</h3>
+
+<canvas id="patientChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h3>Monthly Admissions</h3>
+
+<canvas id="admissionChart"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 CarePlus Hospital Management System
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
