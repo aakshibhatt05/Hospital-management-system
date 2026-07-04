@@ -22,9 +22,7 @@ A responsive Hospital Management System built using HTML, CSS and JavaScript.
 - Chart.js
 - Font Awesome
 
-## Screenshots
 
-(Add screenshots here)
 
 ## How to Run
 
